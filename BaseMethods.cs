@@ -53,37 +53,7 @@ namespace TestLib
                 Console.WriteLine(e);
             }
         }
-
-        //public static void Scroll(scrollType type, int pixel)
-        //{
-        //    if (type == scrollType.H)
-        //    {
-        //        try
-        //        {
-        //            //IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-        //            var VS = String.Format("window.scrollTo({0}, 0)", pixel);
-        //            js.ExecuteScript(VS);
-                    
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Console.WriteLine(e);
-        //        }
-        //    }
-        //    if (type == scrollType.V)
-        //    {
-        //        try
-        //        {
-        //            // IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-        //            var VS = String.Format("window.scrollTo(0, {0})", pixel);
-        //            js.ExecuteScript(VS);
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            Console.WriteLine(e);
-        //        }
-        //    }
-        //}
+       
         public static void Scroll(int Hpixel,int Vpixel)
         {
             try
@@ -135,10 +105,25 @@ namespace TestLib
                 driver.FindElement(By.XPath(element)).Clear();
         }
 
+        public static void MouseHover(string xpath)
+        {
+            Actions action = new Actions(driver);
+            action.MoveToElement(driver.FindElement(By.XPath(xpath))).Perform();
+        }
+        public static void MoveToElement(string xpath)
+        {
+            Actions action = new Actions(driver);
+            action.MoveToElement(driver.FindElement(By.XPath(xpath))).Build().Perform();
+        }
+        public static void SwitchToFrame(int frameValue)
+        {
+            driver.SwitchTo().Frame(frameValue);
+        }
         public static void TabDown()
         {
             Actions action = new Actions(driver);
             action.KeyDown(Keys.Tab).Build().Perform();
         }
+
     }
 }
